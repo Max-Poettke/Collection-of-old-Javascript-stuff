@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta http-equiv = "content-type" content = "text/html; charset = utf-8"/>
+    <link href = "style.css" rel = "stylesheet"/>
+    <script defer = "">
+      var k = 3;
+      var counter = 0;
+
+
+/*
+      function easyJosephus(k,length){
+        var result = [];
+        var i = 0;
+
+        while (result.length < length){
+          result[result.length] = result + 1;
+        }
+
+        while (result.length > 0){
+          i = (i-1+k) % result.length;
+          result.splice(i,1);
+        }
+        return result[0];
+      }
+*/
+
+      function Josephus(k, length){
+        counter = 0;
+        var result = [];
+        for (let i = 0; i < length; i = i + 1){
+          result[i] = (i + 1);
+        }
+
+        console.groupCollapsed ("%cLoop", "color: #e0c285");
+        var chainlength = result.length;
+        for (let i = 0; i < chainlength; i++){
+          if(result.length > 1){
+            for (let i = 0; i<=result.length; i ++){
+              counter ++;
+              if (counter === k){
+                result.splice(i,1);
+                if(i >= result.length - (k-1) && result.length > k - 1){
+                  counter = 0;
+                } else {counter = 1;}
+                console.log(result.reduce (function (a, b){
+                  return a + " " + b.toString ();
+                }));
+              }
+              console.log (i);
+            }
+          }
+        }
+        console.groupEnd ();
+        return result[0];
+      }
+
+      window.addEventListener ("DOMContentLoaded", function (){
+        console.log (Josephus (k,24) === trueJosephus (24,k), ((trueJosephus (1,k) === trueJosephus (9,k)) === (Josephus (k,1) === Josephus (k,9))));
+        document.body.innerHTML = document.body.innerHTML + "<br>Max: " + Josephus(k, 50).toString();
+      }, {capture: false, once: true});
+    </script>
+  </head>
+  <body>
+    <script defer = "">
+      function trueJosephus (length, k = 2){
+        var result = [];
+        while (length > result.length){
+          result[result.length] = (result.length + 1);
+        }
+
+        console.groupCollapsed ("%cFabian", "color: #85e0c2");
+        var i = 0;
+        while (result.length > 1){
+          if (((i - 1 + k) % result.length) === (i % result.length)){
+            i = ((i + 1) % result.length);
+          }
+          else{
+            i = ((i - 1 + k) % result.length);
+            console.log(i);
+          }
+          console.log (result.reduce (function (a, b){
+            return (a + " " + b.toString ());
+          }));
+          result.splice (i, 1);
+        }
+
+        console.groupEnd ();
+        return result[0];
+      }
+      document.body.innerHTML = "Fabian: " + (trueJosephus (50, k).toString ());
+    </script>
+  </body>
+</html>

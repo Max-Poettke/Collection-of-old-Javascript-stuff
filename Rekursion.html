@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <title>
+            Rekursion
+        </title>
+    </head>
+
+<body>
+    <h1>Rekursion</h1>
+</body>
+
+<script>
+    var x,y,n,z,m;
+    n = 0;
+    x = 1;
+    y = 1;
+    m = parseInt(prompt("maxima"));
+
+    console.log(fibonacci(x,y,m));
+    console.log(fibonacciCool(m));
+
+    // rekursiv
+    function fibonacci(x,y,m){
+        if (n > m){
+            return y;
+        }
+        n = n + 1;
+        return fibonacci(y,y + x,m);
+    }
+
+    // iterativ
+    function fibonacciCool(m){
+        var x,y,z;
+        x = 1;
+        y = 1;
+        z = 0;
+        for (var i = 0; i <= m; i ++){
+            z = y;
+            y = x + y;
+            x = z;
+        }
+        return y / x;
+    }
+
+/*
+    5
+    3
+
+    5!
+    3! * 2!
+
+    5 * 4 * 3
+    3 * 2 * 1
+
+    5
+    2
+
+    5!
+    2! * 3!
+
+    5 * 4
+    2 * 1
+*/
+
+</script>
+</html>

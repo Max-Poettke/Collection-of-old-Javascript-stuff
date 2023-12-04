@@ -1,0 +1,157 @@
+<html>
+    <head>
+        <link href="Bubblesort.css" rel="stylesheet" />
+        <script>
+            "use strict"
+            
+            const gameboard = document.createElement("canvas");
+            const gameboard_ctx = gameboard.getContext("2d");
+            var numb = [];
+            var going = false;
+            
+            var gradient;
+            
+            for (let i = 0; i < 100; i++){
+                let x = Math.floor(Math.random()* 100);
+                numb.push(x);
+            }
+
+            /*
+            numb = bubbleSort(numb); 
+            function bubbleSort(arr){
+              do {
+              going = false;
+              for (let i = 0; i < arr.length; i ++){
+                if (arr[i + 1] < arr[i]){
+                  var save = arr[i + 1];
+                  arr[i + 1] = arr[i];
+                  arr[i] = save;
+                  going = true;
+                }
+                }
+              }
+              while (going);
+              return arr;
+            }
+            */
+            
+            function max(arr){
+                var result = 0;
+                for (let i = 0; i < arr.length; i++){
+                    if (arr[i] > result){
+                        result = arr[i];
+                    }
+                }
+                return result;
+            }
+
+            function compare(arr_u){
+                var arr = []; 
+                for(let i=0; i < arr_u.length; i++){
+                    arr[i] = arr_u[i];
+                }
+
+                while (arr.length > 0){
+                    if (max(arr) === arr[arr.length - 1]){
+                        arr.pop();
+                    } else {break;}
+                }
+
+                return 1 - (arr.length / arr_u.length);
+            }
+
+            main(0, numb, false);
+            function main(i, arr, going){
+                if (i + 1 === arr.length){
+                    
+                    if (!going){
+                        return;
+                    }
+                    i = 0;
+                    going = false;
+                }
+                
+                if (arr[i] > arr[i + 1]){
+                    let help = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = help;
+                    going = true;
+                    //console.log((100 * compare(arr)).toFixed(0));
+                    gameboard_ctx.clearRect(0,0,gameboard.width,gameboard.height);
+                    drawProgress((100 * compare(arr)).toFixed(0));
+                    drawGraph(arr);
+                    drawBg();
+                }
+
+                setTimeout(function(){
+                    return main(i + 1, arr, going);
+                }, 4);
+            }
+            
+            const RESIZE = document.createEvent("UIEvent");
+            RESIZE.initUIEvent("resize",false,false);
+            
+            window.addEventListener("load", function (){
+              document.body.appendChild(gameboard);
+              window.dispatchEvent(RESIZE);
+            },{capture:false, once:true});
+            
+            window.addEventListener("resize", function (){
+              gameboard.width = window.innerWidth;
+              gameboard.height = window.innerHeight;
+              
+              drawProgress((100 * compare(numb)).toFixed(0));
+              drawGraph(numb);
+              gameboard_ctx.globalCompositeOperation = "destination-over";
+              drawBg();
+            },false);
+            
+            function drawBg(){
+                /*
+              gradient = gameboard_ctx.createLinearGradient(0,0,0,gameboard.height);
+              gradient.addColorStop(0,"pink");
+              gradient.addColorStop(1,"cornflowerblue");
+              */
+            
+              //gameboard_ctx.fillStyle = gradient;
+              gameboard_ctx.fillStyle = "white";
+              //gameboard_ctx.strokeStyle = "cornflowerblue";
+              gameboard_ctx.fillRect(0,0,gameboard.width,gameboard.height);
+              //gameboard_ctx.strokeRect(0,0,gameboard.width,gameboard.height);
+            }
+            function drawGraph(arr){
+              var scale = (gameboard.height - 100) / numb[numb.length-1];
+              gameboard_ctx.lineWidth = 1;
+              /*
+              gradient = gameboard_ctx.createLinearGradient(0,100,0,gameboard.height);
+              gradient.addColorStop(0,"cornflowerblue");
+              gradient.addColorStop(0.5, "#ffca80");
+              gradient.addColorStop(1, "pink");
+              gameboard_ctx.fillStyle = gradient;
+              */
+              gameboard_ctx.fillStyle = "black";
+              var spacing = Math.round(gameboard.width / arr.length);
+              for (let i=0;i<arr.length;i++){
+                gameboard_ctx.fillRect(spacing * (i) + spacing / 2 - 10, gameboard.height, 20,- arr[i] * scale);
+                //gameboard_ctx.strokeRect(spacing * (i) + spacing / 2 - 10, gameboard.height, 20,-arr[i] * scale);
+              }
+            }
+
+            function drawProgress(progress){
+                gameboard_ctx.lineWidth = 5;
+                gameboard_ctx.fillStyle = "black";
+                gameboard_ctx.strokeStyle = "red";
+                gameboard_ctx.textAlign = "center";
+                gameboard_ctx.textBaseline = "middle";
+                gameboard_ctx.font = "36px sans-serif";
+                
+                gameboard_ctx.arc(150, 150, 100, 0.5 * Math.PI, (0.5 + progress / 50) * Math.PI);
+                gameboard_ctx.stroke();
+                gameboard_ctx.beginPath();
+                gameboard_ctx.fillText(progress + "%", 150, 150);
+                gameboard_ctx.strokeStyle = "black";
+            }
+            </script>
+    </head>
+<body></body>
+<html>

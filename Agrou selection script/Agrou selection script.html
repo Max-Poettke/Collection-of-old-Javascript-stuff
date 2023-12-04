@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Selection script</title>
+    </head>
+
+    <body>
+        <h1>Big ole role selector</h1>
+        <br>
+        <h3>Village roles:</h3>
+            <p id="villager" onclick="actVill()"></p>
+            <p id="seer" onclick="actSee()"></p>
+            <p id="guard" onclick="actGuard()"></p>
+            <p id="witch" onclick="actWitch()"></p>
+            <p id="hunter" onclick="actHunter()"></p>
+            <p id="crow" onclick="actCrow()"></p>
+        <h3>Neutral roles:</h3>
+            <p id="angel" onclick="actAngel()"></p>
+            <p id="cupid" onclick="actCupid()"></p>
+            <p id="whitewolf" onclick="actwW()"></p>
+            <p id="pyro" onclick="actPyr()"></p>
+        <h3>Pack roles:</h3>
+            <p id="wolf" onclick="actWolf()"></p>
+            <p id="blackwolf" onclick="actBw()"></p>
+        <button type="button" onclick="calcRoles()">Calculate random roles</button>
+    </body>
+
+    <script>
+
+        var playerCount = Math.round(prompt("Wie viele Spieler spielen?"));
+        var neutralCount = Math.round(playerCount / 3);
+        var evilCount = Math.round(playerCount / 4);
+        var Roles = [];
+        console.log(playerCount, neutralCount, evilCount);
+
+        //village roles
+        var villAct = 1;
+        var VillRef = document.getElementById("villager");
+
+        var seeAct = 1;
+        var SeeRef = document.getElementById("seer");
+
+        var guardAct = 1;
+        var GuardRef = document.getElementById("guard");
+
+        var witchAct = 1;
+        var WitchRef = document.getElementById("witch");
+
+        var huntAct = 1;
+        var HuntRef = document.getElementById("hunter");
+
+        var crowAct = 1;
+        var crowRef = document.getElementById("crow");
+
+        //neutral
+        var angelAct = 1;
+        var AngelRef = document.getElementById("angel");
+
+        var cupidAct = 1;
+        var CupidRef = document.getElementById("cupid");
+
+        var wwAct = 1;
+        var WwRef = document.getElementById("whitewolf");
+
+        var pyrAct = 1;
+        var PyrRef = document.getElementById("pyro");
+
+        //pack
+        var wolfAct = 1;
+        var WolfRef = document.getElementById("wolf");
+
+        var bwAct = 1;
+        var BwRef = document.getElementById("blackwolf");
+
+        onStart();
+
+        function onStart(){
+            //Village roles
+            VillRef.innerHTML = "- Villager = on";
+            SeeRef.innerHTML = "- Seer = on";
+            GuardRef.innerHTML = "- Guard = on";
+            WitchRef.innerHTML = "- Witch = on";
+            HuntRef.innerHTML = "- Hunter = on";
+            crowRef.innerHTML = "- Crow = on";
+            //Neutral roles
+            AngelRef.innerHTML = "- Angel = on";
+            CupidRef.innerHTML = "- Cupid = on";
+            WwRef.innerHTML = "- White wolf = on";
+            PyrRef.innerHTML = "- Pyromaniac = on";
+            //Pack roles
+            WolfRef.innerHTML = "- Wolf = on";
+            BwRef.innerHTML = "- Black wolf = on";
+
+            //12 roles
+        }
+
+        function actAngel(){
+            if (angelAct === 1){
+                AngelRef.innerHTML = "- Angel = off"
+                angelAct = 0;
+            } else {
+                AngelRef.innerHTML = "- Angel = on";
+                angelAct = 1;
+            }
+        }
+
+        function actVill(){
+            if (villAct === 1){
+                VillRef.innerHTML = "- Villager = off"
+                villAct = 0;
+            } else {
+                VillRef.innerHTML = "- Villager = on"
+                villAct = 1;
+            }
+        }
+
+        function actSee(){
+            if (seeAct === 1){
+                SeeRef.innerHTML = "- Seer = off";
+                seeAct = 0;
+            } else {
+                SeeRef.innerHTML = "- Seer = on";
+                seeAct = 1;
+            }
+        }
+
+        function actGuard(){
+            if (guardAct === 1){
+                GuardRef.innerHTML = "- Guard = off";
+                guardAct = 0;
+            } else {
+                GuardRef.innerHTML = "- Guard = on";
+                guardAct = 1;
+            }
+        }
+
+        function actWitch(){
+            if (witchAct === 1){
+                WitchRef.innerHTML = "- Witch = off";
+                witchAct = 0;
+            } else {
+                WitchRef.innerHTML = "- Witch = on";
+                witchAct = 1;
+            }
+        }
+
+        function actHunter(){
+            if (huntAct === 1){
+                HuntRef.innerHTML = "- Hunter = off";
+                huntAct = 0;
+            } else {
+                HuntRef.innerHTML = "- Hunter = on";
+                huntAct = 1;
+            }
+        }
+
+        function actCrow(){
+            if (crowAct === 1){
+                crowRef.innerHTML = "- Crow = off";
+                crowAct = 0;
+            } else {
+                crowRef.innerHTML = "- Crow = on";
+                crowAct = 1;
+            }
+        }
+
+        function actCupid(){
+            if (cupidAct === 1){
+                CupidRef.innerHTML = "- Cupid = off";
+                cupidAct = 0;
+            } else {
+                CupidRef.innerHTML = "- Cupid = on";
+                cupidAct = 1;
+            }
+        }
+
+        function actPyr(){
+            if (pyrAct === 1){
+                PyrRef.innerHTML = "- Pyromaniac = off";
+                pyrAct = 0;
+            } else {
+                PyrRef.innerHTML = "- Pyromaniac = on";
+                pyrAct = 1;
+            }
+        }
+
+        function actwW(){
+            if (wwAct === 1){
+                WwRef.innerHTML = "- White wolf = off";
+                wwAct = 0;
+            } else {
+                WwRef.innerHTML = "- White wolf = on";
+                wwAct = 1;
+            }
+        }
+
+        function actWolf(){
+            if (wolfAct === 1){
+                WolfRef.innerHTML = "- Wolf = off";
+                wolfAct = 0;
+            } else {
+                WolfRef.innerHTML = "- Witch = on";
+                wolfAct = 1;
+            }
+        }
+
+        function actBw(){
+            if (bwAct === 1){
+                BwRef.innerHTML = "- Black wolf = off";
+                bwAct = 0;
+            } else {
+                BwRef.innerHTML = "- Black wolf = on";
+                bwAct = 1;
+            }
+        }
+
+        function calcRoles(){
+            Roles = [];
+            var remaining = playerCount;
+            var remainingneutral = neutralCount;
+            var remainingevil = evilCount;
+            var village = 0;
+            var neutral = 0;
+            var pack = 0;
+            var villMax = Math.floor(playerCount / 4);
+            var seeMax = 1;
+            var guardMax = 1;
+            var witchMax = 1;
+            var huntMax = 1;
+            var crowMax = 1;
+            var angelMax = 1;
+            var cupidMax = 1;
+            var wwMax = 1;
+            var pyrMax = 1;
+            var bwMax = 1;
+
+            while (remainingevil >= Math.ceil(evilCount / 2)){
+                var x = Math.round(Math.random);
+                if (x === 1 && bwMax !== 0){
+                    Roles.push({Number: remaining, Role: "BlackWolf"});
+                    pack ++;
+                    bwMax --;
+                } else {
+                    Roles.push({Number: remaining,Role: "Wolf"});
+                    pack ++;
+                }
+                remainingevil --;
+                remaining --;
+            }
+            while (remaining > 0){
+                var x = Math.round(Math.random() * 11);
+                switch(x){
+                    case 0:
+                        if (villAct === 1){
+                            Roles.push({Number: remaining,Role: "Villager"});
+                            village ++;
+                        } else {remaining ++;}
+                        break;
+                    case 1:
+                        if (seeAct === 1 && seeMax !== 0){
+                            Roles.push({Number: remaining,Role: "Seer"});
+                            village ++;
+                            seeMax --;
+                        } else {remaining ++;}
+                        break;
+                    case 2:
+                        if(guardAct === 1 && guardMax !== 0){
+                            Roles.push({Number: remaining,Role: "Guard"});
+                            village ++;
+                            guardMax --;
+                        } else {remaining ++;}
+                        break;
+                    case 3:
+                        if (witchAct === 1 && witchMax !== 0){
+                            Roles.push({Number: remaining,Role: "Witch"});
+                            village ++;
+                            witchMax --;
+                        } else {remaining ++;}
+                        break;
+                    case 4:
+                        if (huntAct === 1 && huntMax !== 0){
+                            Roles.push({Number: remaining,Role: "Hunter"});
+                            village ++;
+                            huntMax --;
+                        } else {remaining ++;}
+                        break;
+                    case 5:
+                        if (crowAct === 1 && crowMax !== 0){
+                            Roles.push({Number: remaining,Role: "Crow"});
+                            village ++;
+                            crowMax --;
+                        } else {remaining ++;}
+                        break;
+                    case 6:
+                        if (angelAct === 1 && angelMax !== 0 && remainingneutral !== 0){
+                            Roles.push({Number: remaining,Role: "Angel"});
+                            remainingneutral --;
+                            neutral ++;
+                            angelMax --;
+                        } else {remaining ++;}
+                        break;  
+                    case 7:
+                        if (cupidAct === 1 && cupidMax !== 0 && remainingneutral !== 0){
+                            Roles.push({Number: remaining,Role: "Cupid"});
+                            remainingneutral --;
+                            neutral ++;
+                            cupidMax --;
+                        } else {remaining ++;}
+                        break;
+                    case 8:
+                        if (wwAct === 1 && remainingevil !== 0 && wwMax !== 0 && remainingneutral !== 0){
+                            Roles.push({Number: remaining,Role: "WhiteWolf"});
+                            remainingneutral --;
+                            neutral ++;
+                            remainingevil --;
+                            wwMax --;
+                        } else {remaining ++;}
+                        break;
+                    case 9: 
+                        if (pyrAct === 1 && pyrMax !== 0 && remainingneutral !== 0 && playerCount > 6){
+                            Roles.push({Number: remaining,Role: "Pyromaniac"});
+                            remainingneutral --;
+                            neutral ++;
+                            pyrMax --;
+                        } else {remaining ++;}
+                        break;
+                    case 10: 
+                        if (wolfAct === 1 && remainingevil !== 0){
+                            Roles.push({Number: remaining,Role: "Wolf"});
+                            pack ++;
+                            remainingevil --;
+                        } else {remaining ++;}
+                        break;
+                    case 11:
+                        if (bwAct === 1 &&  remainingevil !== 0 && bwMax !== 0){
+                            Roles.push({Number: remaining,Role: "BlackWolf"});
+                            pack ++;
+                            bwMax --;
+                            remainingevil --;
+                        } else {remaining ++;}
+                        break;
+                }
+                remaining --;
+            }
+
+            console.log(Roles);
+            console.log("Village: ",village, " Neutral: ", neutral, " Pack: ",pack);
+        }
+    </script>
+</html>

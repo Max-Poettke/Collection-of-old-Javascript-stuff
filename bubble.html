@@ -1,0 +1,31 @@
+<html>
+    <script>
+
+        var bubble = [];
+        var length = 5;
+        var hadToSort = true;
+
+        while (bubble.length < length){                                 //Array füllen
+            bubble[bubble.length] = Math.floor(Math.random()*80) + 1;
+        }
+
+        function sort(arr){
+            while(hadToSort === true){
+                hadToSort = false;                  //falls nichts geswitcht wurde beenden
+                for(i=0; i<arr.length; i++){
+                    if(arr[i] > arr[i+1]){          //Vergleich ob nachkommende Zahl größer ist
+                        let helper = arr[i+1]; 
+                        arr[i+1] = arr[i];
+                        arr[i] = helper;
+                        hadToSort = true;           //!Wichtig angeben, dass gerade geswitcht wurde!
+                    }
+                }
+            }
+            return arr;
+        }
+
+        console.log(bubble);
+        console.log(sort(bubble));
+
+    </script>
+</html>

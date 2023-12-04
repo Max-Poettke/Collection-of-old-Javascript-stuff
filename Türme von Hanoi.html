@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Türme von Hanoi</title>
+    </head>
+
+    <script>
+
+
+        function verschiebe( a, b, c, n ){
+    if( n === 1){
+        document.write( "Verschiebe die oberste Scheibe von ",a, "auf" ,c,"." );
+    }
+    else{
+        verschiebe( a, c, b, ( n - 1 ) );
+        verschiebe( a, b, c, 1 );
+        verschiebe( b, a, c, ( n - 1 ) );
+    }
+}
+    </script>
+</html>

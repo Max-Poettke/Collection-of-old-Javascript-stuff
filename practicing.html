@@ -1,0 +1,133 @@
+<html>
+    <head>
+        <title>Practice</title>
+        <script>
+            var a = "Stein";
+            var b = "Bach";
+            var c = a + b;
+            var d = "Cultluc";
+
+            document.writeln(c + "<br>");//SteinBach
+            document.writeln(b+a+ "<br>"); //BachStein
+            document.writeln(a.length+ "<br>"); //5
+            document.writeln(c.toUpperCase()+ "<br>"); //STEINBACH
+            document.writeln(a.toLowerCase()+ "<br>"); //stein
+            document.writeln(c.substr(4,1)+ "<br>"); //n
+            document.writeln(c.substr(2,3)+ "<br>"); //ein
+            document.writeln(c.charAt(5)+ "<br>"); //B
+            document.writeln(c.indexOf("a")+ "<br>"); //7
+        
+            var turned;
+            function umdreh(x){
+                turned = "";
+                for (i=0;i<x.length;i++){
+                    turned = turned + x.charAt(x.length - 1 - i);
+                    console.log(turned);
+                }
+                return turned;
+            }
+
+            function afterAnother(x){
+                for(i=0;i<x.length;i++){
+                    x = x.toUpperCase();
+                    document.write(x.charAt(i)+"<br>");
+                }
+            }
+
+            function palindrom(x){
+                var count = 0;
+                x = x.toLowerCase();
+                for (let i=0; i<Math.floor(x.length/2); i++){
+                    if(x.charAt(i) === x.charAt(x.length-1-i)){
+                        count = count;
+                    } else {
+                        console.log("uff");
+                        count ++;
+                    }
+                }
+
+                if (count != 0){
+                    return false;
+                } else {
+                    return true;
+                }
+                
+            }
+
+            function countLetter(x, letter){
+                var count = 0;
+                x = x.toLowerCase();
+                for(i=0;i<x.length;i++){
+                    if (x.charAt(i)===letter){
+                        count ++;
+                    }
+                }
+                return count;
+            }
+
+            var sentence = "Eins zwei drei im Sauseschritt";
+        
+            function cutSentence(x){
+                for (let i=0;i<x.length;i++){
+                    if (x.charAt(i) === " "){
+                        document.write("<br>");
+                    } else {
+                        document.write(x.charAt(i));
+                    }
+                }
+                document.write("<br>");
+                return;
+            }
+
+            var postOrt = "71554 Backnang";
+            var post;
+            var ort;
+
+            function splitPostOrt(x){
+                let arr = x.split(" ");
+                post = arr[0];
+                ort = arr[1];
+                document.write(x,", Postleitzahl: ", post, ", Ort: ", ort);
+                document.write("<br>");
+            }
+
+            var testSatz = "Drei Chinesen mit nem Kontrabass";
+            function vocalErsetzen(x, from, to){
+                for (let i=0;i<x.length;i++){
+                    if (x.charAt(i) === from){
+                        document.write(to);
+                    } else {
+                        document.write(x.charAt(i));
+                    }
+                }
+                document.write("<br>");
+            }
+
+            document.writeln(umdreh(c)+ "<br>");
+            afterAnother(c);
+            document.write(d + ", " + palindrom(d) + "<br>");
+            document.write(d + ", c, " + countLetter(d,"c") + "<br>");
+            cutSentence(sentence);
+            splitPostOrt(postOrt);
+            vocalErsetzen(testSatz,"e","u");
+
+            /*
+            var result = [];
+            var i = 0;
+            function josephus(length,k){
+                while (result.length < length){
+                    result[result.length] = result.length + 1;
+                }
+                
+                while (result.length > 1){
+                    i = (i-1+k)%result.length;
+                    result.splice(i,1);
+                }
+
+                return result[0];
+            }
+            console.log(josephus(20,3));
+            */
+        </script>
+    </head>
+</html>

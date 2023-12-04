@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <script>
+        'use strict'      
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+
+        const RESIZE = document.createEvent("Event");
+        RESIZE.initEvent("resize",false ,false);
+
+
+        CellMap.P = 0.45;
+        Object.assign(CellMap.prototype, {
+            randomize: function(probability){
+                for (let y = 0; y < this.height; y ++){
+                    for (let x = 0; x < this.width; x ++){
+                        this.data[x][y] = parseInt(Math.random() + probability);
+                    }
+                }
+            }
+        });
+
+        var cellMap = new CellMap(10, 10);
+                
+        window.addEventListener("load", function(){
+            document.body.appendChild(canvas);
+            window.dispatchEvent(RESIZE);
+
+        },{capture:false, once:true});
+        
+        
+
+        window.addEventListener("resize", function(){
+
+        },false);
+        
+        window.addEventListener("keydown", function(event){
+            switch (event.key.toUpperCase()){
+                case "ENTER":
+                    cellMap.randomize(CellMap.P);
+                    console.log(cellMap);
+                    break;
+                default:
+                    console.log(event.key.toUpperCase());
+            }
+        })
+
+        function CellMap(width, height){
+            this.width = width;
+            this.height = height;
+
+            this.data = [];
+
+            for(let x = 0; x < width; x ++){
+                this.data[x] = new Uint8Array(height);
+            }
+            return this;
+        }
+
+        </script>
+    </head>
+    <body></body>
+</html>
